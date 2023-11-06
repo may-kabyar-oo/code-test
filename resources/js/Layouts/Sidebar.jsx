@@ -1,5 +1,4 @@
 import { Head, Link } from '@inertiajs/react'
-import { Button } from 'flowbite-react'
 
 export default function Welcome({ user }) {
   return (

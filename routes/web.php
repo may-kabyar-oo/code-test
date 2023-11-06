@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -37,5 +38,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test', [TestController::class, 'show']);
+Route::get('/patients', [PatientController::class, 'show']);
 
 require __DIR__.'/auth.php';

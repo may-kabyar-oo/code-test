@@ -10,7 +10,7 @@ class TestController extends Controller
 {
     public function show()
     {
-        return Inertia::render('Test/Show', [
+        return Inertia::render('SideBar/index', [
             'user' => [
                 'name' => 'May',
                 'age' => 25

@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('address', 40);
             $table->date('treatment_start_date');
             $table->enum('township', ['AMP', 'AMT', 'CAT', 'CMT', 'PTG', 'PGT', 'MHA']);
-            $table->boolean('vot');
+            $table->boolean('vot')->default(false);
             $table->string('username');
             $table->string('password', 4);
-            $table->boolean('vot_status')->default(true);
+            $table->boolean('vot_status')->default(false);
             $table->timestamps();
         });
     }

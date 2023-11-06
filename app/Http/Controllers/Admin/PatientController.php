@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PatientListRequest;
 use App\Http\Requests\Admin\PatientRequest;
 use App\Models\Patient;
 use Carbon\Carbon;
@@ -10,10 +11,19 @@ use Inertia\Inertia;
 
 class PatientController extends Controller
 {
-    public function index()
+    public function index(PatientListRequest $request)
     {
-        $patients = Patient::paginate(10);
+        $data = $request->validated();
+        $patientsQuery = Patient::query();
+            $patientsQuery->orderBy('created_at', 'desc');
 
+        if (array_key_exists('search', $data)) {
+            $patientsQuery->where('name','LIKE','%'. $data['search'] .'%');
+        }
+
+        $patients = $patientsQuery->paginate(10);
+
+        // dd($patients);
         return Inertia::render('Patients/Index', [
             'patients' => $patients
         ]);
@@ -35,11 +45,11 @@ class PatientController extends Controller
         $patient->treatment_start_date = $data['treatment_start_date'];
         $patient->township = $data['township'];
         $patient->vot = $data['vot'];
-        $patient->username = $data['township'] . '_' . $lastPatient->id + 1 . Carbon::now()->year;
+        $patient->username = $data['township'] . '_' . $lastPatient->id + 1 . '_' . Carbon::now()->year;
         $patient->password = $data['password'];
         $patient->save();
 
-        return $patient;
+        return to_route('patients.index');
 
     }
 

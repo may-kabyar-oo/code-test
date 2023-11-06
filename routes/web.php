@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test', [TestController::class, 'show']);
-Route::resource('/patients', PatientController::class);
+Route::resource('/patients', PatientController::class)->middleware('auth');
 Route::resource('/vot-patients', VotPatientController::class);
 
 require __DIR__.'/auth.php';

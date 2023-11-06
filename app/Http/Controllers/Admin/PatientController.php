@@ -19,7 +19,7 @@ class PatientController extends Controller
         ]);
     }
 
-    public function store(PatientRequest $request) 
+    public function store(PatientRequest $request)
     {
         $data = $request->validated();
 
@@ -48,8 +48,6 @@ class PatientController extends Controller
         $votPatient = Patient::findOrFail($id);
         $votPatient->delete();
 
-        return response()->json([
-            'message' => 'successful'
-        ]); 
+        return to_route('patients.index');
     }
 }

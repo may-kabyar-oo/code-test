@@ -11,8 +11,7 @@ class VotPatientController extends Controller
 {
     public function index()
     {
-        $votPatients = Patient::where('vot', true)->get();
-        
+        $votPatients = Patient::where('vot', 1)->paginate(10);
         return Inertia::render('VotPatient/Index', [
             'votPatients' => $votPatients
         ]);

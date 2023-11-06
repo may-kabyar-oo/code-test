@@ -42,4 +42,14 @@ class PatientController extends Controller
         return $patient;
 
     }
+
+    public function destroy($id)
+    {
+        $votPatient = Patient::findOrFail($id);
+        $votPatient->delete();
+
+        return response()->json([
+            'message' => 'successful'
+        ]); 
+    }
 }

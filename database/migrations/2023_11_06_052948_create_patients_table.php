@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('serial_number')->unique();
             $table->date('registration_date');
-            $table->string('name');
+            $table->string('name')->index();
             $table->enum('sex', ['Male', 'Female', 'Other']);
             $table->integer('age');
             $table->string('address', 40);
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->boolean('vot');
             $table->string('username');
             $table->string('password', 4);
+            $table->boolean('vot_status')->default(true);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\TestController;
+use App\Http\Controllers\Admin\VotPatientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test', [TestController::class, 'show']);
-Route::get('/patients', [PatientController::class, 'show']);
+Route::resource('/patients', PatientController::class);
+Route::resource('/vot-patients', VotPatientController::class);
 
 require __DIR__.'/auth.php';

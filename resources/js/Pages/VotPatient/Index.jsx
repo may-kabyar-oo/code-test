@@ -1,8 +1,8 @@
 import Sidebar from '../../Layouts/Sidebar'
-import { CreatePatientModal } from './CreateModal';
+import { CreatePatientModal } from '../Patients/CreateModal';
 
-export default function Patients({ patients }) {
-    console.log(patients);
+export default function Patients({ votPatients }) {
+    console.log(votPatients);
   return (
     <>
     <CreatePatientModal />
@@ -74,7 +74,7 @@ export default function Patients({ patients }) {
                             </tr>
                         </thead>
                         <tbody>
-                            { patients.data.map((data, i) => (
+                            { votPatients.map((data, i) => (
                                 <tr key={data.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
